@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* ユーザーが設定した文字サイズに追従 */
+  html {
+    font-size: 100%; /* デフォルト文字サイズに追従 */
+  }
+
+  body {
+    font-size: 1rem; /* htmlに合わせてスケーリング */
+    -webkit-text-size-adjust: 100%; /* iOS Safariで動的タイプを尊重 */
+  }
+
+  p {
+    font-size: 1rem; /* rem単位で指定 */
+  }
+</style>
+</head>
+<body>
+  <p>この文章はデバイスの文字サイズ設定に従います。</p>
+</body>
+</html>
