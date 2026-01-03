@@ -5,53 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   html {
-    font-size: 16px; /* 仮の基準 */
+    font-size: 16px; /* 基準サイズ */
   }
 
   body {
-    -webkit-text-size-adjust: auto; /* Safariの動的文字サイズを許可 */
+    -webkit-text-size-adjust: auto;
     font-size: 1rem;
     line-height: 1.5;
     margin: 1rem;
   }
 
   p {
-    font-size: 1rem; /* remで相対指定 */
+    font-size: 1rem;
   }
 </style>
 </head>
 <body>
-  <p>この文章はiOS Safariの文字サイズ設定に従い、できるだけ正確に拡大縮小されます。</p>
-  <p>小さくしたり大きくしたりすると反映されます。</p>
+  <p>文字サイズを単純に倍率で反映します。前後の大きさは無関係です。</p>
 
 <script>
-  function applyDynamicFontSize() {
-    const html = document.documentElement;
-
-    // 仮の要素でiOS Safariの自動拡大率を取得
-    const tester = document.createElement('span');
-    tester.style.fontSize = '1rem';
-    tester.style.position = 'absolute';
-    tester.style.visibility = 'hidden';
-    tester.textContent = 'M';
-    document.body.appendChild(tester);
-
-    // 実際にレンダリングされた高さを取得
-    const computedSize = tester.offsetHeight;
-
-    // 基準16pxと比較して倍率を計算
-    const scale = computedSize / 16;
-
-    // htmlのfont-sizeを調整して全体に反映
-    html.style.fontSize = `${16 * scale}px`;
-
-    // テスト用要素は削除
-    document.body.removeChild(tester);
+  function applyUserScale(scale = 1) {
+    // scaleは0.8や1.2など任意の倍率
+    document.documentElement.style.fontSize = `${16 * scale}px`;
   }
 
-  // ページロード時とリサイズ時に適用
-  window.addEventListener('load', applyDynamicFontSize);
-  window.addEventListener('resize', applyDynamicFontSize);
+  // 例: 120%にしたい場合
+  applyUserScale(1.2);
 </script>
 </body>
 </html>
