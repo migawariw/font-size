@@ -12,25 +12,43 @@
     -webkit-text-size-adjust: auto;
     font-size: 1rem;
     line-height: 1.5;
-    margin: 1rem;
+    margin: 2rem;
+    transition: font-size 0.2s;
   }
 
   p {
     font-size: 1rem;
   }
+
+  label {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  input[type="range"] {
+    width: 100%;
+  }
 </style>
 </head>
 <body>
-  <p>文字サイズを単純に倍率で反映します。前後の大きさは無関係です。</p>
+  <label>
+    文字サイズ: <span id="size-label">100%</span>
+    <input id="slider" type="range" min="50" max="200" value="100">
+  </label>
+
+  <p>この文章はスライダーで文字サイズを変えられます。</p>
+  <p>別の段落も連動して変化します。</p>
 
 <script>
-  function applyUserScale(scale = 1) {
-    // scaleは0.8や1.2など任意の倍率
-    document.documentElement.style.fontSize = `${16 * scale}px`;
-  }
+  const slider = document.getElementById('slider');
+  const label = document.getElementById('size-label');
+  const html = document.documentElement;
 
-  // 例: 120%にしたい場合
-  applyUserScale(1.2);
+  slider.addEventListener('input', () => {
+    const scale = slider.value / 100; // 50〜200 → 0.5〜2倍
+    html.style.fontSize = `${16 * scale}px`;
+    label.textContent = `${slider.value}%`;
+  });
 </script>
 </body>
 </html>
